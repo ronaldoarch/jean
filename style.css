@@ -1,8 +1,8 @@
 :root {
-    --primary-red: #FF0000;
-    --primary-gold: #FFD700;
-    --primary-orange: #FF8C00;
-    --bg-dark: #050a14;
+    --primary-yellow: #FFD700;
+    --primary-green: #B8FF2B;
+    --primary-red: #FF3333;
+    --bg-dark: #0a0f1a;
     --text-white: #ffffff;
     --font-main: 'Montserrat', sans-serif;
 }
@@ -15,8 +15,7 @@
 
 body {
     font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    background-image: radial-gradient(circle at center, #1a253a 0%, #050a14 100%);
+    background: radial-gradient(ellipse at center, #1a1f2e 0%, #0a0f1a 70%);
     color: var(--text-white);
     overflow-x: hidden;
     min-height: 100vh;
@@ -24,6 +23,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .background-effects {
@@ -32,107 +32,251 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 0;
     overflow: hidden;
+    pointer-events: none;
 }
 
-.background-video {
+/* Números flutuantes decorativos */
+.floating-numbers {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    opacity: 1;
-    filter: brightness(1) contrast(1.1) saturate(1.1);
+    width: 100%;
+    height: 100%;
 }
 
+.number {
+    position: absolute;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--primary-red);
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.8);
+    opacity: 0.7;
+    animation: float 3s ease-in-out infinite;
+}
+
+.n1 { top: 15%; left: 10%; animation-delay: 0s; }
+.n2 { top: 25%; right: 15%; animation-delay: 0.5s; }
+.n3 { bottom: 30%; left: 8%; animation-delay: 1s; }
+.n4 { bottom: 15%; right: 12%; animation-delay: 1.5s; }
+.n5 { top: 60%; left: 85%; animation-delay: 2s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Aviãozinho decorativo */
+.plane-icon {
+    position: absolute;
+    font-size: 3rem;
+    top: 20%;
+    right: 15%;
+    transform: rotate(-45deg);
+    opacity: 0.3;
+    filter: drop-shadow(0 0 10px var(--primary-red));
+    animation: flyAround 8s linear infinite;
+}
+
+@keyframes flyAround {
+    0% { 
+        top: 20%;
+        right: 15%;
+        opacity: 0.3;
+    }
+    50% { 
+        top: 70%;
+        right: 80%;
+        opacity: 0.5;
+    }
+    100% { 
+        top: 20%;
+        right: 15%;
+        opacity: 0.3;
+    }
+}
 
 .hero {
     text-align: center;
     width: 100%;
     max-width: 600px;
-    padding: 20px;
+    padding: 40px 20px;
     position: relative;
     z-index: 1;
 }
 
+/* Logo BigBet */
+.logo-container {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: lowercase;
+    color: var(--text-white);
+    letter-spacing: -2px;
+    position: relative;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(184, 255, 43, 0.3);
+    box-shadow: 0 0 30px rgba(184, 255, 43, 0.2);
+}
+
+.logo::after {
+    content: '▸';
+    color: var(--primary-green);
+    position: absolute;
+    font-size: 1rem;
+    top: 10px;
+    right: 25px;
+}
+
 header {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .subtitle {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1;
+    letter-spacing: 2px;
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: 900;
     text-transform: uppercase;
     line-height: 1;
     margin-top: -10px;
+    background: linear-gradient(to bottom, #ffffff, #cccccc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
 }
 
+.content {
+    margin-top: 40px;
+}
 
 .headline-3d {
     font-size: 3.5rem;
     font-weight: 900;
-    line-height: 0.9;
+    line-height: 0.95;
     text-transform: uppercase;
-    background: linear-gradient(to bottom, #FFD700, #FF8C00);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 4px 0px #b86e00);
-    margin-bottom: 10px;
-}
-
-.cta-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
+    color: #ffffff;
+    text-shadow: 
+        0 2px 0 rgba(0,0,0,0.3),
+        0 4px 10px rgba(255, 51, 51, 0.5);
+    margin-bottom: 40px;
+    letter-spacing: -2px;
 }
 
 .cta-button {
     display: inline-block;
-    background-color: var(--primary-red);
-    color: white;
+    background: linear-gradient(to bottom, var(--primary-yellow), #FFA500);
+    color: #000000;
     font-weight: 900;
-    font-size: 1.5rem;
-    padding: 15px 40px;
+    font-size: 1.8rem;
+    padding: 18px 60px;
     border-radius: 50px;
     text-decoration: none;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    box-shadow: 
+        0 4px 0 rgba(0, 0, 0, 0.2),
+        0 8px 25px rgba(255, 215, 0, 0.5);
     transition: transform 0.2s, box-shadow 0.2s;
     animation: pulseButton 2s infinite;
+    letter-spacing: 1px;
 }
 
 .cta-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 6px 0 rgba(0, 0, 0, 0.2),
+        0 12px 30px rgba(255, 215, 0, 0.7);
+}
+
+.cta-button:active {
+    transform: translateY(-1px);
 }
 
 @keyframes pulseButton {
-    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-    70% { box-shadow: 0 0 0 20px rgba(255, 0, 0, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+    0% { 
+        box-shadow: 
+            0 4px 0 rgba(0, 0, 0, 0.2),
+            0 8px 25px rgba(255, 215, 0, 0.5),
+            0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    70% { 
+        box-shadow: 
+            0 4px 0 rgba(0, 0, 0, 0.2),
+            0 8px 25px rgba(255, 215, 0, 0.5),
+            0 0 0 20px rgba(255, 215, 0, 0);
+    }
+    100% { 
+        box-shadow: 
+            0 4px 0 rgba(0, 0, 0, 0.2),
+            0 8px 25px rgba(255, 215, 0, 0.5),
+            0 0 0 0 rgba(255, 215, 0, 0);
+    }
 }
 
 .disclaimer {
-    margin-top: 20px;
-    font-size: 0.8rem;
+    margin-top: 30px;
+    font-size: 0.9rem;
     opacity: 0.7;
+    font-weight: 400;
 }
 
 /* Responsive Adjustments */
+@media (max-width: 768px) {
+    .logo { 
+        font-size: 2rem; 
+        padding: 12px 25px;
+    }
+    
+    .subtitle { font-size: 2rem; }
+    
+    .title { font-size: 4rem; }
+    
+    .headline-3d { font-size: 2.8rem; }
+    
+    .cta-button { 
+        font-size: 1.5rem; 
+        padding: 15px 50px;
+    }
+    
+    .number { font-size: 1.5rem; }
+    
+    .plane-icon { font-size: 2rem; }
+}
+
 @media (max-width: 480px) {
+    .logo { 
+        font-size: 1.5rem; 
+        padding: 10px 20px;
+    }
+    
+    .subtitle { font-size: 1.5rem; }
+    
     .title { font-size: 3rem; }
-    .headline-3d { font-size: 2.5rem; }
+    
+    .headline-3d { font-size: 2rem; }
+    
+    .cta-button { 
+        font-size: 1.2rem; 
+        padding: 12px 40px;
+    }
+    
+    .number { font-size: 1.2rem; }
+    
+    .plane-icon { font-size: 1.5rem; }
+    
+    .n5 { display: none; }
 }
